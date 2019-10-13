@@ -1,8 +1,11 @@
 package com.mairwunnx.projectessentialswarps
 
 import com.mairwunnx.projectessentialscore.EssBase
+import com.mairwunnx.projectessentialswarps.models.WarpModelUtils
 import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.event.server.FMLServerStoppingEvent
 import org.apache.logging.log4j.LogManager
 
 @Suppress("unused")
@@ -17,6 +20,16 @@ class EntryPoint : EssBase() {
         validateForgeVersion()
         logger.debug("Register event bus for $modName mod ...")
         MinecraftForge.EVENT_BUS.register(this)
+        logger.info("Loading $modName warps config ...")
+        WarpModelUtils.loadData()
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    @SubscribeEvent
+    fun onServerStopping(it: FMLServerStoppingEvent) {
+        logger.info("Shutting down $modName mod ...")
+        logger.info("    - Saving warps config ...")
+        WarpModelUtils.saveData()
     }
 
     companion object {

@@ -3,7 +3,7 @@ loaderVersion="[28,)"
 issueTrackerURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps/issues"
 
 [[mods]]
-    modId="project_essentials_Warps"
+    modId="project_essentials_warps"
     version="1.14.4-1.0.0.0"
     displayName="Project Essentials Warps"
     updateJSONURL="https://raw.githubusercontent.com/ProjectEssentials/ProjectEssentials-Warps/MC-1.14.4/update.json"
@@ -11,7 +11,7 @@ issueTrackerURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps/is
     credits="Thanks JetBrains for Intellij IDEA license!"
     authors="MairwunNx (Pavel Erokhin)"
     description='''
-    Project Essentials Spawn - additional module for Essentials;
+    Project Essentials Warps - additional module for Essentials;
     Just add ability to set and teleport to warps.
     '''
 

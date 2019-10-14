@@ -62,9 +62,11 @@ object SetWarpCommand {
                 val zPos = player.posZ.toInt()
                 val yaw = player.rotationYaw
                 val pitch = player.rotationPitch
-                if (WarpModelUtils.warpModel.warps.firstOrNull()?.name == warpName) {
-                    sendMsg("warps", c.source, "warp.exist")
-                    return 0
+                WarpModelUtils.warpModel.warps.forEach {
+                    if (it.name == warpName) {
+                        sendMsg("warps", c.source, "warp.exist")
+                        return 0
+                    }
                 }
                 WarpModelUtils.warpModel.warps.add(
                     WarpModel.Warp(

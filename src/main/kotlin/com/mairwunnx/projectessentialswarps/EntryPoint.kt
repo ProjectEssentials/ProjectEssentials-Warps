@@ -2,6 +2,7 @@ package com.mairwunnx.projectessentialswarps
 
 import com.mairwunnx.projectessentialscore.EssBase
 import com.mairwunnx.projectessentialswarps.commands.SetWarpCommand
+import com.mairwunnx.projectessentialswarps.commands.WarpCommand
 import com.mairwunnx.projectessentialswarps.models.WarpModelUtils
 import com.mojang.brigadier.CommandDispatcher
 import net.minecraft.command.CommandSource
@@ -39,6 +40,7 @@ class EntryPoint : EssBase() {
     ) {
         logger.info("Command registering is starting ...")
         SetWarpCommand.register(cmdDispatcher)
+        WarpCommand.register(cmdDispatcher)
     }
 
     @Suppress("UNUSED_PARAMETER")

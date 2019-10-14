@@ -1,6 +1,7 @@
 package com.mairwunnx.projectessentialswarps
 
 import com.mairwunnx.projectessentialscore.EssBase
+import com.mairwunnx.projectessentialswarps.commands.DelWarpCommand
 import com.mairwunnx.projectessentialswarps.commands.SetWarpCommand
 import com.mairwunnx.projectessentialswarps.commands.WarpCommand
 import com.mairwunnx.projectessentialswarps.models.WarpModelUtils
@@ -40,6 +41,7 @@ class EntryPoint : EssBase() {
     ) {
         logger.info("Command registering is starting ...")
         SetWarpCommand.register(cmdDispatcher)
+        DelWarpCommand.register(cmdDispatcher)
         WarpCommand.register(cmdDispatcher)
     }
 

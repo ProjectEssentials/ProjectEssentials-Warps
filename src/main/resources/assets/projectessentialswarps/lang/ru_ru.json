@@ -1,0 +1,11 @@
+{
+  "project_essentials_warps.warp.exist": "§cВарп с названием §7%s §cуже существует.",
+  "project_essentials_warps.warp.set.restricted": "§cУ вас §7нет прав §cна создание варпов.",
+  "project_essentials_warps.warp.set.success": "§6Новый варп с названием §7%s §6был сохранен.",
+  "project_essentials_warps.warp.not_found": "§cВарп с названием §7%s §cне существует.",
+  "project_essentials_warps.warp.restricted": "§cУ вас §7нет прав §cна телепортацию к какому-либо варпу.",
+  "project_essentials_warps.warp.success": "§6Вы телепортированы к варпу §7%s§6.",
+  "project_essentials_warps.warp.remove_not_access": "§cВы §7не можете удалить этот варп§c, он пренадлежит другому игроку.",
+  "project_essentials_warps.warp.remove.success": "§6Варп с названием §7%s§6 был удален.",
+  "project_essentials_warps.warp.remove.restricted": "§cУ вас §7нет прав §cна удаление какого-либо варпа."
+}

@@ -64,7 +64,7 @@ object SetWarpCommand {
                 val pitch = player.rotationPitch
                 WarpModelUtils.warpModel.warps.forEach {
                     if (it.name == warpName) {
-                        sendMsg("warps", c.source, "warp.exist")
+                        sendMsg("warps", c.source, "warp.exist", warpName)
                         return 0
                     }
                 }
@@ -74,7 +74,7 @@ object SetWarpCommand {
                         xPos, yPos, zPos, yaw, pitch
                     )
                 )
-                sendMsg("warps", c.source, "warp.set.success")
+                sendMsg("warps", c.source, "warp.set.success", warpName)
                 logger.info("Executed command \"/setwarp\" from ${player.name.string}")
             } else {
                 sendMsg("warps", c.source, "warp.set.restricted")

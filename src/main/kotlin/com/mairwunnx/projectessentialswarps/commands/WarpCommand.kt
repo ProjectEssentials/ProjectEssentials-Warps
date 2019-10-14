@@ -62,7 +62,7 @@ object WarpCommand {
                     logger.info("Executed command \"/warp\" from ${player.name.string}")
                     return 0
                 }
-                sendMsg("warps", c.source, "warp.not_found")
+                sendMsg("warps", c.source, "warp.not_found", warpName)
             } else {
                 sendMsg("warps", c.source, "warp.restricted")
                 logger.info(

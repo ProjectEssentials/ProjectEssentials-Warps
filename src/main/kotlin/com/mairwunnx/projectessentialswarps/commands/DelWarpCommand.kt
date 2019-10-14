@@ -64,10 +64,10 @@ object DelWarpCommand {
                     it.name == warpName
                 }.let { result ->
                     if (result) {
-                        sendMsg("warps", c.source, "warp.remove.success")
+                        sendMsg("warps", c.source, "warp.remove.success", warpName)
                         logger.info("Executed command \"/delwarp\" from ${player.name.string}")
                     } else {
-                        sendMsg("warps", c.source, "warp.not_found")
+                        sendMsg("warps", c.source, "warp.not_found", warpName)
                     }
                 }
             } else {

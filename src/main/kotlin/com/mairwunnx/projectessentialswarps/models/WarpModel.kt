@@ -11,6 +11,7 @@ data class WarpModel(
     data class Warp(
         var name: String = String.empty,
         var clientWorld: String = String.empty,
+        var owner: String = String.empty,
         var worldId: Int = -1,
         var xPos: Int = -1,
         var yPos: Int = -1,

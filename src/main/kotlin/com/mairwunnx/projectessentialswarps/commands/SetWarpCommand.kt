@@ -62,15 +62,20 @@ object SetWarpCommand {
                 val zPos = player.posZ.toInt()
                 val yaw = player.rotationYaw
                 val pitch = player.rotationPitch
+                if (WarpModelUtils.warpModel.warps.firstOrNull()?.name == warpName) {
+                    sendMsg("warps", c.source, "warp.exist")
+                    return 0
+                }
                 WarpModelUtils.warpModel.warps.add(
                     WarpModel.Warp(
-                        warpName, clientWorld, worldId, xPos, yPos, zPos, yaw, pitch
+                        warpName, clientWorld, player.name.string, worldId,
+                        xPos, yPos, zPos, yaw, pitch
                     )
                 )
-                sendMsg("warps", c.source, "warps.set.success")
+                sendMsg("warps", c.source, "warp.set.success")
                 logger.info("Executed command \"/setwarp\" from ${player.name.string}")
             } else {
-                sendMsg("warps", c.source, "warps.set.restricted")
+                sendMsg("warps", c.source, "warp.set.restricted")
                 logger.info(
                     PERMISSION_LEVEL
                         .replace("%0", player.name.string)

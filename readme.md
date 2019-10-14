@@ -1,4 +1,4 @@
-## 🎊 Project Essentials: Warps
+## 🎆 Project Essentials: Warps
 
 > ## Forge modification for controlling warp points on server and client.
 

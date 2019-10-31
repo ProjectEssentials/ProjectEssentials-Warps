@@ -1,0 +1,11 @@
+{
+  "project_essentials_warps.warp.exist": "§cWarp com nome §7%s §cjá existe.",
+  "project_essentials_warps.warp.set.restricted": "§cVocê §7não tem permissão §cpara criar novos warps.",
+  "project_essentials_warps.warp.set.success": "§6Novo warp com nome §7%s §6foi salvo.",
+  "project_essentials_warps.warp.not_found": "§cO warp com nome §7%s §c§7não existe§c.",
+  "project_essentials_warps.warp.restricted": "§cVocê §7não tem permissão §cpara teleportar para nenhum ponto de warp.",
+  "project_essentials_warps.warp.success": "§6Teleportado para warp §7%s§6.",
+  "project_essentials_warps.warp.remove_not_access": "§cVocê §7não pode deletar esse warp§c, ele pertence a outro jogador.",
+  "project_essentials_warps.warp.remove.success": "§6Warp com nome §7%s§6 foi removido.",
+  "project_essentials_warps.warp.remove.restricted": "§cVocê §7não tem permissão §cpara remover nenhum ponto de warp."
+}

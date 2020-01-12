@@ -1,22 +1,24 @@
-> ## Documentation for basically using Warps module.
+> ## Documentation for basic use of the Warps module.
 
-## 1. For playing and running minecraft:
+## 1. For playing and running Minecraft:
 
 #### 1.1 Download Warps mod module.
 
-Visit **Warps** repository on github, visit **releases** tab and download `.jar` files of latest _pre-release_ / release (**recommended**)
+Visit **Warps** repository on github, visit **releases** tab and download the `.jar` files of latest _pre-release_ / release (**recommended**)
 
 Releases page: <https://github.com/ProjectEssentials/ProjectEssentials-Warps/releases>
 
 #### 1.2 Install Warps modification.
 
-The minecraft forge folder structure below will help you understand what is written below.
+The Minecraft forge folder structure below will help you understand what is written below.
 
 > ##### Important note: don't forget install mod dependencies!
 
 - core: <https://github.com/ProjectEssentials/ProjectEssentials-Core/releases>
-- permissions: <https://github.com/ProjectEssentials/ProjectEssentials-Permissions/releases>
+- permissions*: <https://github.com/ProjectEssentials/ProjectEssentials-Permissions/releases>
+- cooldown*: <https://github.com/ProjectEssentials/ProjectEssentials-Cooldown/releases>
 
+* - not mandatory dependency, but recommended.
 
 ```
 .
@@ -26,7 +28,8 @@ The minecraft forge folder structure below will help you understand what is writ
 ├── mods (that's how it should be)
 │   ├── Project Essentials Warps-1.14.4-1.X.X.X.jar
 │   ├── Project Essentials Core-MOD-1.14.4-1.X.X.X.jar.
-│   └── Project Essentials Permissions-1.14.4-1.X.X.X.jar.
+│   └── Project Essentials Permissions-1.14.4-1.X.X.X.jar. (recommended)
+│   └── Project Essentials Cooldown-1.14.4-1.X.X.X.jar. (recommended)
 └── ...
 ```
 
@@ -38,7 +41,7 @@ Run the game, check the number of mods, if the list of mods contains `Project Es
 
 After that, go into a single world, then try to write the `/warp test` command, if you **get "warp not exist"**, then the modification works as it should.
 
-#### 1.4 Control your warps via minecraft commands.
+#### 1.4 Control your warps via Minecraft commands.
 
 We made the commands for you:
 
@@ -68,4 +71,4 @@ We made the commands for you:
 - permission: ess.warp.remove
 ```
 
-### For all questions, be sure to write issues!
+### If you have any questions or encounter a problem, be sure to open an issue!

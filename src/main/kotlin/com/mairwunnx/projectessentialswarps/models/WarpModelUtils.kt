@@ -14,45 +14,35 @@ object WarpModelUtils {
     var warpModel = WarpModel()
     private val json = Json(
         JsonConfiguration(
-            encodeDefaults = true,
-            strictMode = true,
-            unquoted = false,
+            strictMode = false,
             allowStructuredMapKeys = true,
-            prettyPrint = true,
-            useArrayPolymorphism = false
+            prettyPrint = true
         )
     )
 
     fun loadData() {
-        logger.info("    - loading world warps data ...")
-        logger.debug("        - setup json configuration for parsing ...")
+        logger.info("Loading world warps data ...")
+        logger.debug("Setup json configuration for parsing ...")
         if (!File(warpsConfig).exists()) {
-            logger.warn("        - warps config not exist! creating it now!")
+            logger.warn("Warps config not exist! creating it now!")
             createConfigDirs(MOD_CONFIG_FOLDER)
-            val defaultConfig = json.stringify(
-                WarpModel.serializer(),
-                warpModel
-            )
+            val defaultConfig = json.stringify(WarpModel.serializer(), warpModel)
             File(warpsConfig).writeText(defaultConfig)
         }
         val warpsConfigRaw = File(warpsConfig).readText()
-        warpModel = Json.parse(WarpModel.serializer(), warpsConfigRaw)
+        warpModel = json.parse(WarpModel.serializer(), warpsConfigRaw)
         logger.info("Warps config loaded: $warpModel")
     }
 
     fun saveData() {
-        logger.info("    - saving warps data ...")
         createConfigDirs(MOD_CONFIG_FOLDER)
-        val spawnConfig = json.stringify(
-            WarpModel.serializer(),
-            warpModel
-        )
+        val spawnConfig = json.stringify(WarpModel.serializer(), warpModel)
         File(warpsConfig).writeText(spawnConfig)
     }
 
     @Suppress("SameParameterValue")
     private fun createConfigDirs(path: String) {
-        logger.info("        - creating config directory for warps ($path)")
+        logger.info("Creating config directory for warps ($path)")
         val configDirectory = File(path)
         if (!configDirectory.exists()) configDirectory.mkdirs()
     }

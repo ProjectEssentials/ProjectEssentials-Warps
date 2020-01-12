@@ -21,7 +21,7 @@ class EntryPoint : EssBase() {
 
     init {
         modInstance = this
-        modVersion = "1.14.4-1.0.0.0"
+        modVersion = "1.14.4-1.1.0.0"
         logBaseInfo()
         validateForgeVersion()
         logger.debug("Register event bus for $modName mod ...")
@@ -49,7 +49,7 @@ class EntryPoint : EssBase() {
     @SubscribeEvent
     fun onServerStopping(it: FMLServerStoppingEvent) {
         logger.info("Shutting down $modName mod ...")
-        logger.info("    - Saving warps config ...")
+        logger.info("Saving warps config ...")
         WarpModelUtils.saveData()
     }
 

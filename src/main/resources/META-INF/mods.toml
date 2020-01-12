@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps/is
 
 [[mods]]
     modId="project_essentials_warps"
-    version="1.14.4-1.0.0.0"
+    version="1.14.4-1.1.0.0"
     displayName="Project Essentials Warps"
     updateJSONURL="https://raw.githubusercontent.com/ProjectEssentials/ProjectEssentials-Warps/MC-1.14.4/update.json"
     displayURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps"
@@ -25,7 +25,7 @@ issueTrackerURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps/is
 [[dependencies.projectessentialsspawn]]
     modId="project_essentials_permissions"
     mandatory=true
-    versionRange="[0,)"
+    versionRange="[1,)"
     ordering="NONE"
     side="BOTH"
 

@@ -5,7 +5,8 @@ import com.mairwunnx.projectessentialscore.extensions.isPlayerSender
 import com.mairwunnx.projectessentialscore.extensions.sendMsg
 import com.mairwunnx.projectessentialscore.helpers.ONLY_PLAYER_CAN
 import com.mairwunnx.projectessentialscore.helpers.PERMISSION_LEVEL
-import com.mairwunnx.projectessentialspermissions.permissions.PermissionsAPI
+import com.mairwunnx.projectessentialswarps.EntryPoint
+import com.mairwunnx.projectessentialswarps.EntryPoint.Companion.hasPermission
 import com.mairwunnx.projectessentialswarps.models.WarpModel
 import com.mairwunnx.projectessentialswarps.models.WarpModelUtils
 import com.mojang.brigadier.CommandDispatcher
@@ -39,21 +40,15 @@ object SetWarpCommand {
     }
 
     private fun applyCommandAliases() {
-        try {
-            Class.forName(
-                "com.mairwunnx.projectessentialscooldown.essentials.CommandsAliases"
-            )
+        if (EntryPoint.cooldownsInstalled) {
             CommandsAliases.aliases["setwarp"] = aliases.toMutableList()
-            logger.info("        - applying aliases: $aliases")
-        } catch (_: ClassNotFoundException) {
-            // ignored
         }
     }
 
     private fun execute(c: CommandContext<CommandSource>): Int {
         if (c.isPlayerSender()) {
             val player = c.source.asPlayer()
-            if (PermissionsAPI.hasPermission(player.name.string, "ess.warp.set")) {
+            if (hasPermission(player, "ess.warp.set")) {
                 val warpName = StringArgumentType.getString(c, "warp name")
                 val clientWorld = c.source.world.worldInfo.worldName
                 val worldId = c.source.world.worldType.id

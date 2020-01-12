@@ -5,12 +5,13 @@ import com.mairwunnx.projectessentialscore.extensions.isPlayerSender
 import com.mairwunnx.projectessentialscore.extensions.sendMsg
 import com.mairwunnx.projectessentialscore.helpers.ONLY_PLAYER_CAN
 import com.mairwunnx.projectessentialscore.helpers.PERMISSION_LEVEL
-import com.mairwunnx.projectessentialspermissions.permissions.PermissionsAPI
+import com.mairwunnx.projectessentialswarps.EntryPoint
+import com.mairwunnx.projectessentialswarps.EntryPoint.Companion.hasPermission
 import com.mairwunnx.projectessentialswarps.models.WarpModel
 import com.mairwunnx.projectessentialswarps.models.WarpModelUtils
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
-import com.mojang.brigadier.builder.LiteralArgumentBuilder
+import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandSource
 import net.minecraft.command.Commands
@@ -26,7 +27,7 @@ object WarpCommand {
         logger.info("    - register \"/warp\" command ...")
         aliases.forEach { command ->
             dispatcher.register(
-                LiteralArgumentBuilder.literal<CommandSource>(command).then(
+                literal<CommandSource>(command).then(
                     Commands.argument(
                         "warp name", StringArgumentType.string()
                     ).executes {
@@ -39,21 +40,15 @@ object WarpCommand {
     }
 
     private fun applyCommandAliases() {
-        try {
-            Class.forName(
-                "com.mairwunnx.projectessentialscooldown.essentials.CommandsAliases"
-            )
+        if (EntryPoint.cooldownsInstalled) {
             CommandsAliases.aliases["warp"] = aliases.toMutableList()
-            logger.info("        - applying aliases: $aliases")
-        } catch (_: ClassNotFoundException) {
-            // ignored
         }
     }
 
     private fun execute(c: CommandContext<CommandSource>): Int {
         if (c.isPlayerSender()) {
             val player = c.source.asPlayer()
-            if (PermissionsAPI.hasPermission(player.name.string, "ess.warp")) {
+            if (hasPermission(player, "ess.warp")) {
                 val warpName = StringArgumentType.getString(c, "warp name")
                 WarpModelUtils.warpModel.warps.firstOrNull {
                     it.name == warpName

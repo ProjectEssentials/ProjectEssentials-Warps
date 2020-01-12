@@ -1,14 +1,14 @@
-package com.mairwunnx.projectessentialswarps.commands
+package com.mairwunnx.projectessentials.warps.commands
 
+import com.mairwunnx.projectessentials.warps.EntryPoint
+import com.mairwunnx.projectessentials.warps.EntryPoint.Companion.hasPermission
+import com.mairwunnx.projectessentials.warps.models.WarpModel
+import com.mairwunnx.projectessentials.warps.models.WarpModelUtils
 import com.mairwunnx.projectessentialscooldown.essentials.CommandsAliases
 import com.mairwunnx.projectessentialscore.extensions.isPlayerSender
 import com.mairwunnx.projectessentialscore.extensions.sendMsg
 import com.mairwunnx.projectessentialscore.helpers.ONLY_PLAYER_CAN
 import com.mairwunnx.projectessentialscore.helpers.PERMISSION_LEVEL
-import com.mairwunnx.projectessentialswarps.EntryPoint
-import com.mairwunnx.projectessentialswarps.EntryPoint.Companion.hasPermission
-import com.mairwunnx.projectessentialswarps.models.WarpModel
-import com.mairwunnx.projectessentialswarps.models.WarpModelUtils
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
@@ -31,7 +31,9 @@ object WarpCommand {
                     Commands.argument(
                         "warp name", StringArgumentType.string()
                     ).executes {
-                        return@executes execute(it)
+                        return@executes execute(
+                            it
+                        )
                     }
                 )
             )
@@ -53,7 +55,10 @@ object WarpCommand {
                 WarpModelUtils.warpModel.warps.firstOrNull {
                     it.name == warpName
                 }?.let {
-                    moveToWarp(player, it)
+                    moveToWarp(
+                        player,
+                        it
+                    )
                     logger.info("Executed command \"/warp\" from ${player.name.string}")
                     return 0
                 }

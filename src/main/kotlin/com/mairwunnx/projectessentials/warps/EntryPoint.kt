@@ -1,11 +1,11 @@
-package com.mairwunnx.projectessentialswarps
+package com.mairwunnx.projectessentials.warps
 
+import com.mairwunnx.projectessentials.warps.commands.DelWarpCommand
+import com.mairwunnx.projectessentials.warps.commands.SetWarpCommand
+import com.mairwunnx.projectessentials.warps.commands.WarpCommand
+import com.mairwunnx.projectessentials.warps.models.WarpModelUtils
 import com.mairwunnx.projectessentialscore.EssBase
 import com.mairwunnx.projectessentialspermissions.permissions.PermissionsAPI
-import com.mairwunnx.projectessentialswarps.commands.DelWarpCommand
-import com.mairwunnx.projectessentialswarps.commands.SetWarpCommand
-import com.mairwunnx.projectessentialswarps.commands.WarpCommand
-import com.mairwunnx.projectessentialswarps.models.WarpModelUtils
 import com.mojang.brigadier.CommandDispatcher
 import net.minecraft.command.CommandSource
 import net.minecraft.entity.player.ServerPlayerEntity

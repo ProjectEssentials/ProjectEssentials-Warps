@@ -1,4 +1,4 @@
-package com.mairwunnx.projectessentialswarps.models
+package com.mairwunnx.projectessentials.warps.models
 
 import com.mairwunnx.projectessentialscore.extensions.empty
 import kotlinx.serialization.Serializable

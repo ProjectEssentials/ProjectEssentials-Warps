@@ -24,7 +24,6 @@ buildscript {
 
 apply(plugin: "net.minecraftforge.gradle")
 apply(plugin: "kotlin")
-apply(plugin: "java")
 apply(plugin: "kotlinx-serialization")
 
 version = projectEssentialsVersion
@@ -86,7 +85,7 @@ dependencies {
     compile(
         group: "com.github.projectessentials",
         name: "ProjectEssentials-Permissions",
-        version: "v1.14.4-0.2.0.0"
+        version: "v1.14.4-1.0.0.0"
     )
     compile(
         group: "com.github.projectessentials",

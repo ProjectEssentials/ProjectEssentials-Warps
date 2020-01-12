@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This [CHANGELOG.md](./CHANGELOG.md) file.
 
 ### Changed
+- Information for players.
 - [de_de.json](./src/main/resources/assets/projectessentialswarps/lang/de_de.json) file formatted. 
 - Now Permissions module not mandatory.
 - Improved mod loading performance.
@@ -30,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Gradle distribution changed to all in [gradle-wrapper.properties](./gradle/wrapper/gradle-wrapper.properties). 
 
 ### Fixed
+- Typos in documentation.
 - Incorrect removing warp.
 
 ### Removed

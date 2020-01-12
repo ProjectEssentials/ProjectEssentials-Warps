@@ -5,7 +5,8 @@ import com.mairwunnx.projectessentialscore.extensions.isPlayerSender
 import com.mairwunnx.projectessentialscore.extensions.sendMsg
 import com.mairwunnx.projectessentialscore.helpers.ONLY_PLAYER_CAN
 import com.mairwunnx.projectessentialscore.helpers.PERMISSION_LEVEL
-import com.mairwunnx.projectessentialspermissions.permissions.PermissionsAPI
+import com.mairwunnx.projectessentialswarps.EntryPoint
+import com.mairwunnx.projectessentialswarps.EntryPoint.Companion.hasPermission
 import com.mairwunnx.projectessentialswarps.models.WarpModelUtils
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
@@ -38,21 +39,15 @@ object DelWarpCommand {
     }
 
     private fun applyCommandAliases() {
-        try {
-            Class.forName(
-                "com.mairwunnx.projectessentialscooldown.essentials.CommandsAliases"
-            )
+        if (EntryPoint.cooldownsInstalled) {
             CommandsAliases.aliases["delwarp"] = aliases.toMutableList()
-            logger.info("        - applying aliases: $aliases")
-        } catch (_: ClassNotFoundException) {
-            // ignored
         }
     }
 
     private fun execute(c: CommandContext<CommandSource>): Int {
         if (c.isPlayerSender()) {
             val player = c.source.asPlayer()
-            if (PermissionsAPI.hasPermission(player.name.string, "ess.warp.remove")) {
+            if (hasPermission(player, "ess.warp.remove")) {
                 val warpName = StringArgumentType.getString(c, "warp name")
                 WarpModelUtils.warpModel.warps.forEach {
                     if (it.name == warpName && it.owner != player.name.string) {
@@ -60,12 +55,14 @@ object DelWarpCommand {
                         return 0
                     }
                 }
-                WarpModelUtils.warpModel.warps.removeIf {
+                val warp = WarpModelUtils.warpModel.warps.first {
                     it.name == warpName
-                }.let { result ->
+                }
+                WarpModelUtils.warpModel.warps.remove(warp).let { result ->
                     if (result) {
                         sendMsg("warps", c.source, "warp.remove.success", warpName)
                         logger.info("Executed command \"/delwarp\" from ${player.name.string}")
+                        return 0
                     } else {
                         sendMsg("warps", c.source, "warp.not_found", warpName)
                     }

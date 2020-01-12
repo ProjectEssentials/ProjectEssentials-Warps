@@ -15,28 +15,21 @@ issueTrackerURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps/is
     Just add ability to set and teleport to warps.
     '''
 
-[[dependencies.projectessentialspermissions]]
+[[dependencies.projectessentialswarps]]
     modId="project_essentials_core"
     mandatory=true
     versionRange="[1,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.projectessentialsspawn]]
-    modId="project_essentials_permissions"
-    mandatory=true
-    versionRange="[1,)"
-    ordering="NONE"
-    side="BOTH"
-
-[[dependencies.projectessentialsspawn]]
+[[dependencies.projectessentialswarps]]
     modId="forge"
     mandatory=true
     versionRange="[28,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.projectessentialsspawn]]
+[[dependencies.projectessentialswarps]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.14.4]"

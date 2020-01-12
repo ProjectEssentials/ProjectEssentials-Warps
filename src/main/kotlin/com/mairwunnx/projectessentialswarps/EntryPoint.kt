@@ -1,12 +1,14 @@
 package com.mairwunnx.projectessentialswarps
 
 import com.mairwunnx.projectessentialscore.EssBase
+import com.mairwunnx.projectessentialspermissions.permissions.PermissionsAPI
 import com.mairwunnx.projectessentialswarps.commands.DelWarpCommand
 import com.mairwunnx.projectessentialswarps.commands.SetWarpCommand
 import com.mairwunnx.projectessentialswarps.commands.WarpCommand
 import com.mairwunnx.projectessentialswarps.models.WarpModelUtils
 import com.mojang.brigadier.CommandDispatcher
 import net.minecraft.command.CommandSource
+import net.minecraft.entity.player.ServerPlayerEntity
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
@@ -40,9 +42,39 @@ class EntryPoint : EssBase() {
         cmdDispatcher: CommandDispatcher<CommandSource>
     ) {
         logger.info("Command registering is starting ...")
+        loadAdditionalModules()
         SetWarpCommand.register(cmdDispatcher)
         DelWarpCommand.register(cmdDispatcher)
         WarpCommand.register(cmdDispatcher)
+    }
+
+    private fun loadAdditionalModules() {
+        try {
+            Class.forName(
+                "com.mairwunnx.projectessentialscooldown.essentials.CommandsAliases"
+            )
+            cooldownsInstalled = true
+        } catch (_: ClassNotFoundException) {
+            try {
+                Class.forName(
+                    "com.mairwunnx.projectessentials.cooldown.essentials.CommandsAliases"
+                )
+                cooldownsInstalled = true
+                logger.info("Cooldowns module found!")
+            } catch (_: ClassNotFoundException) {
+                // ignored
+            }
+        }
+
+        try {
+            Class.forName(
+                "com.mairwunnx.projectessentials.permissions.permissions.PermissionsAPI"
+            )
+            permissionsInstalled = true
+            logger.info("Permissions module found!")
+        } catch (_: ClassNotFoundException) {
+            // ignored
+        }
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -55,5 +87,14 @@ class EntryPoint : EssBase() {
 
     companion object {
         lateinit var modInstance: EntryPoint
+        var cooldownsInstalled: Boolean = false
+        var permissionsInstalled: Boolean = false
+
+        fun hasPermission(player: ServerPlayerEntity, node: String): Boolean =
+            if (permissionsInstalled) {
+                PermissionsAPI.hasPermission(player.name.string, node)
+            } else {
+                player.server.opPermissionLevel >= 2
+            }
     }
 }

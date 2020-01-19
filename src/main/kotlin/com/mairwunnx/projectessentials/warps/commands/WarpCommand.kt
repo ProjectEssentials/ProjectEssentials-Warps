@@ -13,15 +13,25 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
 import com.mojang.brigadier.context.CommandContext
+import net.minecraft.client.Minecraft
 import net.minecraft.command.CommandSource
 import net.minecraft.command.Commands
 import net.minecraft.entity.player.ServerPlayerEntity
+import net.minecraft.particles.ParticleTypes
+import net.minecraft.potion.Effect
+import net.minecraft.potion.EffectInstance
+import net.minecraft.util.SoundCategory
+import net.minecraft.util.SoundEvents
 import net.minecraft.world.dimension.DimensionType
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.fml.DistExecutor
 import org.apache.logging.log4j.LogManager
+import kotlin.random.Random
 
 object WarpCommand {
     private val aliases = listOf("warp", "ewarp")
     private val logger = LogManager.getLogger()
+    private val random = Random
 
     fun register(dispatcher: CommandDispatcher<CommandSource>) {
         logger.info("Register \"/warp\" command")
@@ -90,6 +100,79 @@ object WarpCommand {
         } else {
             sendMsg("warps", player.commandSource, "warp.not_found", warp.name)
             logger.info("Player ${player.name.string} try teleport to not exist warp ${warp.name}")
+        }
+        val effectEnabled = WarpModelUtils.warpModel.addResistanceEffect
+        val effectDuration = WarpModelUtils.warpModel.resistanceEffectDuration
+        if (effectEnabled) {
+            val effect = Effect.get(11)!!
+            val effectInstance = EffectInstance(effect, effectDuration, 5)
+            player.addPotionEffect(effectInstance)
+        }
+
+        if (WarpModelUtils.warpModel.enableTeleportSound) {
+            DistExecutor.runWhenOn(Dist.CLIENT) {
+                Runnable {
+                    Minecraft.getInstance().world.playSound(
+                        xPos, yPos + player.eyeHeight.toDouble(), zPos,
+                        SoundEvents.ENTITY_ENDERMAN_TELEPORT,
+                        SoundCategory.HOSTILE,
+                        1.0f, 1.0f, false
+                    )
+                    player.entity.playSound(
+                        SoundEvents.ENTITY_ENDERMAN_TELEPORT,
+                        1.0f, 1.0f
+                    )
+                }
+            }
+
+            DistExecutor.runWhenOn(Dist.DEDICATED_SERVER) {
+                Runnable {
+                    player.world.playSound(
+                        null, xPos, yPos + player.eyeHeight.toDouble(), zPos,
+                        SoundEvents.ENTITY_ENDERMAN_TELEPORT,
+                        SoundCategory.HOSTILE,
+                        1.0f, 1.0f
+                    )
+                }
+            }
+        }
+
+        if (WarpModelUtils.warpModel.enableTeleportEffect) {
+            DistExecutor.runWhenOn(Dist.CLIENT) {
+                Runnable {
+                    for (i in 0..200) {
+                        Minecraft.getInstance().world.addParticle(
+                            ParticleTypes.PORTAL,
+                            xPos + (random.nextDouble() - 0.5) * player.width.toDouble(),
+                            yPos + random.nextDouble() * player.height.toDouble() - 0.25,
+                            zPos + (random.nextDouble() - 0.5) * player.width.toDouble(),
+                            (random.nextDouble() - 0.5) * 2.0,
+                            -random.nextDouble(),
+                            (random.nextDouble() - 0.5) * 2.0
+                        )
+                    }
+                    if (player.world.isRemote) spawnServerParticles(player)
+                }
+            }
+            DistExecutor.runWhenOn(Dist.DEDICATED_SERVER) {
+                Runnable {
+                    spawnServerParticles(player)
+                }
+            }
+        }
+    }
+
+    private fun spawnServerParticles(player: ServerPlayerEntity) {
+        for (i in 0..200) {
+            player.serverWorld.spawnParticle(
+                ParticleTypes.PORTAL,
+                player.posX + (random.nextDouble() - 0.5) * player.width.toDouble(),
+                player.posY + random.nextDouble() * player.height.toDouble() - 0.25,
+                player.posZ + (random.nextDouble() - 0.5) * player.width.toDouble(),
+                1,
+                -0.006, -0.006, 0.0,
+                (random.nextDouble() - 0.5) * 2.0
+            )
         }
     }
 }

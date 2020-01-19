@@ -5,6 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class WarpModel(
+    var addResistanceEffect: Boolean = true,
+    var resistanceEffectDuration: Int = 200,
+    var enableTeleportSound: Boolean = true,
+    var enableTeleportEffect: Boolean = true,
     var warps: MutableList<Warp> = mutableListOf()
 ) {
     @Serializable

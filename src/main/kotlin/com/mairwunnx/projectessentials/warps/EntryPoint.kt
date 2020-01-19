@@ -1,11 +1,11 @@
 package com.mairwunnx.projectessentials.warps
 
+import com.mairwunnx.projectessentials.core.EssBase
+import com.mairwunnx.projectessentials.permissions.permissions.PermissionsAPI
 import com.mairwunnx.projectessentials.warps.commands.DelWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.SetWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.WarpCommand
 import com.mairwunnx.projectessentials.warps.models.WarpModelUtils
-import com.mairwunnx.projectessentialscore.EssBase
-import com.mairwunnx.projectessentialspermissions.permissions.PermissionsAPI
 import com.mojang.brigadier.CommandDispatcher
 import net.minecraft.command.CommandSource
 import net.minecraft.entity.player.ServerPlayerEntity
@@ -23,7 +23,7 @@ class EntryPoint : EssBase() {
 
     init {
         modInstance = this
-        modVersion = "1.14.4-1.1.0.0"
+        modVersion = "1.14.4-1.1.1.0"
         logBaseInfo()
         validateForgeVersion()
         logger.debug("Register event bus for $modName mod ...")

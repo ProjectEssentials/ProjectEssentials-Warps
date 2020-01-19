@@ -1,42 +1,15 @@
-## 🎆 Project Essentials: Warps
+<img align="right" src="assets/warps_social.png"/>
 
-> ## Forge modification for controlling warp points on server and client.
+<h2 align="center">Warp points controller provider for minecraft forge.</h2>
 
-#### ❗ Compatibility with forge version `28.0.X` and `28.1.X`.
+<h4 align="center"><a href="https://github.com/ProjectEssentials/ProjectEssentials-Warps/releases/download/v1.14.4-1.2.0.0/Project.Essentials.Warps-1.14.4-1.2.0.0.jar">Download mod</a> · <a href="documentation/for-players.md">How to install</a> · <a href="https://github.com/ProjectEssentials/ProjectEssentials-Warps/issues/new/choose">Troubleshooting</a> · <a href="https://t.me/minecraftforge">News & updates</a> · <a href="changelog.md">Change log</a></h4>
 
-## 🎮 Installation instructions:
-> ##### Just move Project Essentials Warps-1.14.4-1.X.X.X.jar to mods directory:
+        > Just allows players to create and share warps with each other.
 
-> ##### Important note: don't forget install mod dependencies!
+#### Screenshots and demo
 
-- core: <https://github.com/ProjectEssentials/ProjectEssentials-Core/releases>
-- permissions*: <https://github.com/ProjectEssentials/ProjectEssentials-Permissions/releases>
-- cooldown*: <https://github.com/ProjectEssentials/ProjectEssentials-Cooldown/releases>
+![](assets/warp.png)
 
-* - not mandatory dependency, but recommended.
+![](assets/warp_demo01.gif)
 
-```
-.
-├── assets
-├── config
-├── libraries
-├── mods (that's how it should be)
-│   ├── Project Essentials Warps-1.14.4-1.X.X.X.jar
-│   ├── Project Essentials Core-MOD-1.14.4-1.X.X.X.jar.
-│   └── Project Essentials Permissions-1.14.4-1.X.X.X.jar. (recommended)
-│   └── Project Essentials Cooldown-1.14.4-1.X.X.X.jar. (recommended)
-└── ...
-```
-
-```
-Information for developers:
-    - kotlin-std lib version: 1.3.61
-    - kotlinx serialization version: 0.14.0
-    - target jvm version: 1.8
-```
-
-### After you got the dependencies and the library itself:
-
-# [Read the documentation to get started!](./documentation/in-using.md)
-
-> ## Made with 💕 by [MairwunNx](https://mairwunnx.github.io/)
+![](assets/warp_demo02.gif)

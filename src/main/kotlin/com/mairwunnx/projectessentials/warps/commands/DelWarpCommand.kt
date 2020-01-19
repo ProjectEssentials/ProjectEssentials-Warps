@@ -23,21 +23,20 @@ object DelWarpCommand {
     private val logger = LogManager.getLogger()
 
     fun register(dispatcher: CommandDispatcher<CommandSource>) {
-        logger.info("    - register \"/delwarp\" command ...")
+        logger.info("Register \"/delwarp\" command")
+        applyCommandAliases()
+
         aliases.forEach { command ->
             dispatcher.register(
                 literal<CommandSource>(command).then(
                     Commands.argument(
                         "warp name", StringArgumentType.string()
                     ).executes {
-                        return@executes execute(
-                            it
-                        )
+                        return@executes execute(it)
                     }
                 )
             )
         }
-        applyCommandAliases()
     }
 
     private fun applyCommandAliases() {

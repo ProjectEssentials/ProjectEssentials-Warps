@@ -24,21 +24,20 @@ object WarpCommand {
     private val logger = LogManager.getLogger()
 
     fun register(dispatcher: CommandDispatcher<CommandSource>) {
-        logger.info("    - register \"/warp\" command ...")
+        logger.info("Register \"/warp\" command")
+        applyCommandAliases()
+
         aliases.forEach { command ->
             dispatcher.register(
                 literal<CommandSource>(command).then(
                     Commands.argument(
                         "warp name", StringArgumentType.string()
                     ).executes {
-                        return@executes execute(
-                            it
-                        )
+                        return@executes execute(it)
                     }
                 )
             )
         }
-        applyCommandAliases()
     }
 
     private fun applyCommandAliases() {
@@ -55,10 +54,7 @@ object WarpCommand {
                 WarpModelUtils.warpModel.warps.firstOrNull {
                     it.name == warpName
                 }?.let {
-                    moveToWarp(
-                        player,
-                        it
-                    )
+                    moveToWarp(player, it)
                     logger.info("Executed command \"/warp\" from ${player.name.string}")
                     return 0
                 }

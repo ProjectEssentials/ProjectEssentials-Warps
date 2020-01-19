@@ -13,3 +13,12 @@
 ![](assets/warp_demo01.gif)
 
 ![](assets/warp_demo02.gif)
+
+#### Compatibility
+
+Currently mod branch supported forge version `28.0.X` and `28.1.X` (Minecraft `1.14.4`).
+
+#### Credits
+
+- Author: Pavel Erokhin [@mairwunnx](https://github.com/mairwunnx)
+- [JetBrains](https://www.jetbrains.com/) for Licenses

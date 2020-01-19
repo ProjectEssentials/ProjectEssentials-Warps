@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.4-1.2.0.0] - 2020-01-19
+
+### Added
+- Compatibility with core module `1.1.0.0` version.
+- Compatibility with cooldown module `1.0.2.0` version.
+- Sound effect after teleporting on any warp.
+- Particles after teleporting on any warp.
+- Resistance effect after teleporting on any warp.
+
+### Changed
+- Updated dependencies.
+- Updated gradle wrapper version to `5.6.4`.
+
+### Removed
+- Redundant logger messages.
+
 ## [1.14.4-1.1.0.0] - 2020-01-12
   
 ### Added 

@@ -1,4 +1,4 @@
-<img align="right" src="assets/warps_social.png"/>
+<img align="center" src="assets/warps_social.png"/>
 
 <h2 align="center">Warp points controller provider for minecraft forge.</h2>
 

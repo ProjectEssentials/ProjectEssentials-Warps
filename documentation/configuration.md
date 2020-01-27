@@ -1,60 +1,6 @@
-> ## Installation instructions.
+# Configuration
 
-For start the modification, you need installed Forge, it is desirable that the version matches the supported versions. You can download Forge from the [link](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html).
-Move the downloaded mod to the `mods` folder (installation example below).
-
-Also do not forget to install dependencies, only two types of dependencies
-    - mandatory (game will not start without a mod)
-    - recommended (without a mod, game can start, but I recommend using it)
-
-Downloads: [Cooldown](https://github.com/ProjectEssentials/ProjectEssentials-Cooldown) · [Core](https://github.com/ProjectEssentials/ProjectEssentials-Core) · [Permissions](https://github.com/ProjectEssentials/ProjectEssentials-Permissions)
-
-```
-.
-├── assets
-├── config
-├── libraries
-├── mods (that's how it should be)
-│   ├── Project Essentials Core-MOD-1.14.4-1.X.X.X.jar (mandatory)
-│   ├── Project Essentials Cooldown-1.14.4-1.X.X.X.jar (recommended)
-│   ├── Project Essentials Permissions-1.14.4-1.X.X.X.jar (recommended)
-│   └── Project Essentials Warps-1.14.4-1.X.X.X.jar
-└── ...
-```
-
-Now try to start the game, go to the `mods` tab, if this modification is displayed in the `mods` tab, then the mod has been successfully installed.
-
-### Control your warps via Minecraft commands
-
-```
-/warp <warp name>
-
-- description: base command of warps module; just teleport you to target warp point.
-
-- permission: ess.warp
-```
-
-```
-/setwarp <warp name>
-
-- description: set new warp point and now it warp point pnly owned by you. 
-
-- permission: ess.warp.set
-```
-
-```
-/delwarp <warp name>
-
-- description: remove named warp point.
-
-- note: only warp owner can remove target warp point!
-
-- permission: ess.warp.remove
-```
-
-### Configuration
-
-Just in case. Default configuration.
+## Just in case. Default configuration.
 
 You can get default configuration by removing file in path `.minecraft/config/ProjectEssentials/warps.json`, while mod loading if configuration file not exists it ll be recreated.
 
@@ -68,7 +14,7 @@ You can get default configuration by removing file in path `.minecraft/config/Pr
 }
 ```
 
-### Describing configuration
+## Describing configuration
 
 ```
     Property name: addResistanceEffect
@@ -112,7 +58,7 @@ You can get default configuration by removing file in path `.minecraft/config/Pr
     See: `Describing Warp model`
 ```
 
-### Describing Warp model
+## Describing Warp model
 
 ```
     Property name: name
@@ -186,7 +132,7 @@ You can get default configuration by removing file in path `.minecraft/config/Pr
     Description: player camera rotation pitch.
 ```
 
-### Complete configuration example
+## Complete configuration example
 
 It just for example, for understanding configuration structure.
 

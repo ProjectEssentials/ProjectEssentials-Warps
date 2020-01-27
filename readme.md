@@ -2,7 +2,7 @@
 
 <h2 align="center">Warp points controller provider for minecraft forge.</h2>
 
-<h4 align="center"><a href="https://github.com/ProjectEssentials/ProjectEssentials-Warps/releases/download/v1.14.4-1.2.0.0/Project.Essentials.Warps-1.14.4-1.2.0.0.jar">Download mod</a> · <a href="documentation/for-players.md">How to install</a> · <a href="https://github.com/ProjectEssentials/ProjectEssentials-Warps/issues/new/choose">Troubleshooting</a> · <a href="https://t.me/minecraftforge">News & updates</a> · <a href="changelog.md">Change log</a></h4>
+<h4 align="center"><a href="https://github.com/ProjectEssentials/ProjectEssentials-Warps/releases/download/v1.14.4-1.2.1/Project.Essentials.Warps-1.14.4-1.2.1.jar">Download mod</a> · <a href="documentation/commands.md">Commands</a> · <a href="documentation/configuration.md">Configuration</a> · <a href="documentation/how-install.md">How to install</a> · <a href="https://github.com/ProjectEssentials/ProjectEssentials-Warps/issues/new/choose">Troubleshooting</a> · <a href="https://t.me/minecraftforge">News & updates</a> · <a href="changelog.md">Change log</a></h4>
 
         > Just allows players to create and share warps with each other.
 

@@ -12,9 +12,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Uses `permissionAPIClassPath` from CoreAPI.
 - Uses `cooldownAPIClassPath` from CoreAPI.
 
-### Fixed
-- Inconsistent version number with semver.
-
 ## [1.14.4-1.2.1] - 2020-01-27
 
 ### Fixed

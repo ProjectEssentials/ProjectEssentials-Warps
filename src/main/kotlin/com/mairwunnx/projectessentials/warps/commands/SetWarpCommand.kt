@@ -53,9 +53,9 @@ object SetWarpCommand {
                 val warpName = StringArgumentType.getString(c, "warp name")
                 val clientWorld = c.source.world.worldInfo.worldName
                 val worldId = c.source.world.worldType.id
-                val xPos = player.posX.toInt()
-                val yPos = player.posY.toInt()
-                val zPos = player.posZ.toInt()
+                val xPos = player.positionVec.x.toInt()
+                val yPos = player.positionVec.y.toInt()
+                val zPos = player.positionVec.z.toInt()
                 val yaw = player.rotationYaw
                 val pitch = player.rotationPitch
                 WarpModelUtils.warpModel.warps.forEach {

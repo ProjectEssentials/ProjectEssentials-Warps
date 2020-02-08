@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps/is
 
 [[mods]]
     modId="project_essentials_warps"
-    version="1.14.4-1.2.1"
+    version="1.14.4-1.2.2"
     displayName="Project Essentials Warps"
     updateJSONURL="https://raw.githubusercontent.com/ProjectEssentials/ProjectEssentials-Warps/MC-1.14.4/update.json"
     displayURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps"

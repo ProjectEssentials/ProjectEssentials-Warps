@@ -1,13 +1,14 @@
 {
-  "homepage": "https://github.com/ProjectEssentials/ProjectEssentials-Warps/releases/tag/v1.14.4-1.2.1",
+  "homepage": "https://github.com/ProjectEssentials/ProjectEssentials-Warps",
   "1.14.4": {
+    "1.14.4-1.2.2": "Changelog for 1.2.2 https://github.com/ProjectEssentials/ProjectEssentials-Warps/blob/MC-1.14.4/changelog.md#1144-122---2020-02-08",
     "1.14.4-1.2.1": " - Incorrect operator level for warp commands executing fixed.",
     "1.14.4-1.2.0.0": " - Updated dependencies.\n - Added compatibility with core module 1.1.0.0 version and with cooldown module 1.0.2.0.\n - Removed redundant logger messages.\n - Updated gradle wrapper version to 5.6.4.\n - Added sound and particles when teleported to any warp.\n - Added resistance effect when teleported to any warp.",
     "1.14.4-1.1.0.0": " - Removed redundant logger messages.\n - Removed redundant java plugin.\n - Fixed incorrect removing warp.\n - Fixed typos in documentation.\n - Gradle distribution changed to all in gradle-wrapper.properties.\n - Updated forge and kotlinx serialization version.\n - Updated permissions module version.\n - Updated kotlin runtime version.\n - build.gradle file cleanup.\n - Simplified JsonConfiguration in WarpModelUtils.kt\n - Package name cleanup.\n - Improved mod loading performance.\n - Now Permissions module not mandatory.\n - Added CHANGELOG.md file.\n - Added german translations by @BixelPitch.\n - Brazilian portuguese translations by @rafaelcascaslho.",
     "1.14.4-1.0.0.0": " - Initial release of Project Essentials Warps as Project Essentials part."
   },
   "promos": {
-    "1.14.4-latest": "1.14.4-1.2.1",
-    "1.14.4-recommended": "1.14.4-1.2.1"
+    "1.14.4-latest": "1.14.4-1.2.2",
+    "1.14.4-recommended": "1.14.4-1.2.2"
   }
 }

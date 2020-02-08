@@ -112,7 +112,7 @@ object WarpCommand {
         if (WarpModelUtils.warpModel.enableTeleportSound) {
             DistExecutor.runWhenOn(Dist.CLIENT) {
                 Runnable {
-                    Minecraft.getInstance().world.playSound(
+                    Minecraft.getInstance().world?.playSound(
                         xPos, yPos + player.eyeHeight.toDouble(), zPos,
                         SoundEvents.ENTITY_ENDERMAN_TELEPORT,
                         SoundCategory.HOSTILE,
@@ -141,7 +141,7 @@ object WarpCommand {
             DistExecutor.runWhenOn(Dist.CLIENT) {
                 Runnable {
                     for (i in 0..200) {
-                        Minecraft.getInstance().world.addParticle(
+                        Minecraft.getInstance().world?.addParticle(
                             ParticleTypes.PORTAL,
                             xPos + (random.nextDouble() - 0.5) * player.width.toDouble(),
                             yPos + random.nextDouble() * player.height.toDouble() - 0.25,
@@ -166,9 +166,9 @@ object WarpCommand {
         for (i in 0..200) {
             player.serverWorld.spawnParticle(
                 ParticleTypes.PORTAL,
-                player.posX + (random.nextDouble() - 0.5) * player.width.toDouble(),
-                player.posY + random.nextDouble() * player.height.toDouble() - 0.25,
-                player.posZ + (random.nextDouble() - 0.5) * player.width.toDouble(),
+                player.positionVector.x + (random.nextDouble() - 0.5) * player.width.toDouble(),
+                player.positionVector.y + random.nextDouble() * player.height.toDouble() - 0.25,
+                player.positionVector.z + (random.nextDouble() - 0.5) * player.width.toDouble(),
                 1,
                 -0.006, -0.006, 0.0,
                 (random.nextDouble() - 0.5) * 2.0

@@ -2,13 +2,13 @@ package com.mairwunnx.projectessentials.warps.commands
 
 import com.mairwunnx.projectessentials.cooldown.essentials.CommandsAliases
 import com.mairwunnx.projectessentials.core.extensions.isPlayerSender
-import com.mairwunnx.projectessentials.core.extensions.sendMsg
-import com.mairwunnx.projectessentials.core.helpers.ONLY_PLAYER_CAN
-import com.mairwunnx.projectessentials.core.helpers.PERMISSION_LEVEL
+import com.mairwunnx.projectessentials.core.helpers.throwOnlyPlayerCan
+import com.mairwunnx.projectessentials.core.helpers.throwPermissionLevel
 import com.mairwunnx.projectessentials.warps.EntryPoint
 import com.mairwunnx.projectessentials.warps.EntryPoint.Companion.hasPermission
 import com.mairwunnx.projectessentials.warps.models.WarpModel
 import com.mairwunnx.projectessentials.warps.models.WarpModelUtils
+import com.mairwunnx.projectessentials.warps.sendMessage
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
@@ -68,17 +68,13 @@ object WarpCommand {
                     logger.info("Executed command \"/warp\" from ${player.name.string}")
                     return 0
                 }
-                sendMsg("warps", c.source, "warp.not_found", warpName)
+                sendMessage(c.source, "not_found", warpName)
             } else {
-                sendMsg("warps", c.source, "warp.restricted")
-                logger.info(
-                    PERMISSION_LEVEL
-                        .replace("%0", player.name.string)
-                        .replace("%1", "warp")
-                )
+                sendMessage(c.source, "restricted")
+                throwPermissionLevel(player.name.string, "warp")
             }
         } else {
-            logger.info(ONLY_PLAYER_CAN.replace("%0", "warp"))
+            throwOnlyPlayerCan("warp")
         }
         return 0
     }
@@ -96,9 +92,9 @@ object WarpCommand {
         )
         if (player.world.worldInfo.worldName == clientWorld) {
             player.teleport(targetWorld, xPos, yPos, zPos, yaw, pitch)
-            sendMsg("warps", player.commandSource, "warp.success", warp.name)
+            sendMessage(player.commandSource, "success", warp.name)
         } else {
-            sendMsg("warps", player.commandSource, "warp.not_found", warp.name)
+            sendMessage(player.commandSource, "not_found", warp.name)
             logger.info("Player ${player.name.string} try teleport to not exist warp ${warp.name}")
         }
         val effectEnabled = WarpModelUtils.warpModel.addResistanceEffect

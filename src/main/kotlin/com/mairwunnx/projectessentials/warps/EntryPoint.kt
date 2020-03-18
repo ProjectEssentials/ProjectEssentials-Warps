@@ -48,7 +48,7 @@ class EntryPoint : EssBase() {
 
     @SubscribeEvent
     fun onServerStarting(event: FMLServerStartingEvent) {
-        registerCommands(event.server.commandManager.dispatcher)
+        registerCommands(event.commandDispatcher)
     }
 
     private fun registerCommands(

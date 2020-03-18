@@ -1,6 +1,7 @@
 {
   "homepage": "https://github.com/ProjectEssentials/ProjectEssentials-Warps",
   "1.14.4": {
+    "1.14.4-1.2.3": "Changelog for 1.2.3 https://github.com/ProjectEssentials/ProjectEssentials-Warps/blob/MC-1.14.4/changelog.md#1144-123---2020-03-18",
     "1.14.4-1.2.2": "Changelog for 1.2.2 https://github.com/ProjectEssentials/ProjectEssentials-Warps/blob/MC-1.14.4/changelog.md#1144-122---2020-02-08",
     "1.14.4-1.2.1": " - Incorrect operator level for warp commands executing fixed.",
     "1.14.4-1.2.0.0": " - Updated dependencies.\n - Added compatibility with core module 1.1.0.0 version and with cooldown module 1.0.2.0.\n - Removed redundant logger messages.\n - Updated gradle wrapper version to 5.6.4.\n - Added sound and particles when teleported to any warp.\n - Added resistance effect when teleported to any warp.",
@@ -8,7 +9,7 @@
     "1.14.4-1.0.0.0": " - Initial release of Project Essentials Warps as Project Essentials part."
   },
   "promos": {
-    "1.14.4-latest": "1.14.4-1.2.2",
-    "1.14.4-recommended": "1.14.4-1.2.2"
+    "1.14.4-latest": "1.14.4-1.2.3",
+    "1.14.4-recommended": "1.14.4-1.2.3"
   }
 }

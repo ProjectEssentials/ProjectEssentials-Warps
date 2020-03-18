@@ -2,7 +2,6 @@ package com.mairwunnx.projectessentials.warps.commands
 
 import com.mairwunnx.projectessentials.cooldown.essentials.CommandsAliases
 import com.mairwunnx.projectessentials.core.extensions.isPlayerSender
-import com.mairwunnx.projectessentials.core.extensions.sendMsg
 import com.mairwunnx.projectessentials.core.helpers.throwOnlyPlayerCan
 import com.mairwunnx.projectessentials.core.helpers.throwPermissionLevel
 import com.mairwunnx.projectessentials.warps.EntryPoint
@@ -61,7 +60,7 @@ object SetWarpCommand {
                 val pitch = player.rotationPitch
                 WarpModelUtils.warpModel.warps.forEach {
                     if (it.name == warpName) {
-                        sendMsg("warps", c.source, "warp.exist", warpName)
+                        sendMessage(c.source, "exist", warpName)
                         return 0
                     }
                 }

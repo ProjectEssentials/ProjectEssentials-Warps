@@ -2,13 +2,13 @@ package com.mairwunnx.projectessentials.warps.commands
 
 import com.mairwunnx.projectessentials.cooldown.essentials.CommandsAliases
 import com.mairwunnx.projectessentials.core.extensions.isPlayerSender
-import com.mairwunnx.projectessentials.core.extensions.sendMsg
-import com.mairwunnx.projectessentials.core.helpers.ONLY_PLAYER_CAN
-import com.mairwunnx.projectessentials.core.helpers.PERMISSION_LEVEL
+import com.mairwunnx.projectessentials.core.helpers.throwOnlyPlayerCan
+import com.mairwunnx.projectessentials.core.helpers.throwPermissionLevel
 import com.mairwunnx.projectessentials.warps.EntryPoint
 import com.mairwunnx.projectessentials.warps.EntryPoint.Companion.hasPermission
 import com.mairwunnx.projectessentials.warps.models.WarpModel
 import com.mairwunnx.projectessentials.warps.models.WarpModelUtils
+import com.mairwunnx.projectessentials.warps.sendMessage
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
@@ -60,7 +60,7 @@ object SetWarpCommand {
                 val pitch = player.rotationPitch
                 WarpModelUtils.warpModel.warps.forEach {
                     if (it.name == warpName) {
-                        sendMsg("warps", c.source, "warp.exist", warpName)
+                        sendMessage(c.source, "exist", warpName)
                         return 0
                     }
                 }
@@ -70,18 +70,14 @@ object SetWarpCommand {
                         xPos, yPos, zPos, yaw, pitch
                     )
                 )
-                sendMsg("warps", c.source, "warp.set.success", warpName)
+                sendMessage(c.source, "set.success", warpName)
                 logger.info("Executed command \"/setwarp\" from ${player.name.string}")
             } else {
-                sendMsg("warps", c.source, "warp.set.restricted")
-                logger.info(
-                    PERMISSION_LEVEL
-                        .replace("%0", player.name.string)
-                        .replace("%1", "setwarp")
-                )
+                sendMessage(c.source, "set.restricted")
+                throwPermissionLevel(player.name.string, "setwarp")
             }
         } else {
-            logger.info(ONLY_PLAYER_CAN.replace("%0", "setwarp"))
+            throwOnlyPlayerCan("setwarp")
         }
         return 0
     }

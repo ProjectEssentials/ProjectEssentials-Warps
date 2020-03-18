@@ -2,12 +2,12 @@ package com.mairwunnx.projectessentials.warps.commands
 
 import com.mairwunnx.projectessentials.cooldown.essentials.CommandsAliases
 import com.mairwunnx.projectessentials.core.extensions.isPlayerSender
-import com.mairwunnx.projectessentials.core.extensions.sendMsg
-import com.mairwunnx.projectessentials.core.helpers.ONLY_PLAYER_CAN
-import com.mairwunnx.projectessentials.core.helpers.PERMISSION_LEVEL
+import com.mairwunnx.projectessentials.core.helpers.throwOnlyPlayerCan
+import com.mairwunnx.projectessentials.core.helpers.throwPermissionLevel
 import com.mairwunnx.projectessentials.warps.EntryPoint
 import com.mairwunnx.projectessentials.warps.EntryPoint.Companion.hasPermission
 import com.mairwunnx.projectessentials.warps.models.WarpModelUtils
+import com.mairwunnx.projectessentials.warps.sendMessage
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
@@ -52,7 +52,7 @@ object DelWarpCommand {
                 val warpName = StringArgumentType.getString(c, "warp name")
                 WarpModelUtils.warpModel.warps.forEach {
                     if (it.name == warpName && it.owner != player.name.string) {
-                        sendMsg("warps", c.source, "warp.remove_not_access")
+                        sendMessage(c.source, "remove_not_access")
                         return 0
                     }
                 }
@@ -61,23 +61,19 @@ object DelWarpCommand {
                 }
                 WarpModelUtils.warpModel.warps.remove(warp).let { result ->
                     if (result) {
-                        sendMsg("warps", c.source, "warp.remove.success", warpName)
+                        sendMessage(c.source, "remove.success", warpName)
                         logger.info("Executed command \"/delwarp\" from ${player.name.string}")
                         return 0
                     } else {
-                        sendMsg("warps", c.source, "warp.not_found", warpName)
+                        sendMessage(c.source, "not_found", warpName)
                     }
                 }
             } else {
-                sendMsg("warps", c.source, "warp.remove.restricted")
-                logger.info(
-                    PERMISSION_LEVEL
-                        .replace("%0", player.name.string)
-                        .replace("%1", "delwarp")
-                )
+                sendMessage(c.source, "remove.restricted")
+                throwPermissionLevel(player.name.string, "delwarp")
             }
         } else {
-            logger.info(ONLY_PLAYER_CAN.replace("%0", "delwarp"))
+            throwOnlyPlayerCan("delwarp")
         }
         return 0
     }

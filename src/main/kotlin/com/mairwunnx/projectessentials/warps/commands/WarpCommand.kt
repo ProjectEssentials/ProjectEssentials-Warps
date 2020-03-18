@@ -1,6 +1,7 @@
 package com.mairwunnx.projectessentials.warps.commands
 
 import com.mairwunnx.projectessentials.cooldown.essentials.CommandsAliases
+import com.mairwunnx.projectessentials.core.backlocation.BackLocationProvider
 import com.mairwunnx.projectessentials.core.extensions.isPlayerSender
 import com.mairwunnx.projectessentials.core.helpers.throwOnlyPlayerCan
 import com.mairwunnx.projectessentials.core.helpers.throwPermissionLevel
@@ -91,6 +92,7 @@ object WarpCommand {
             DimensionType.getById(dimId) ?: DimensionType.OVERWORLD
         )
         if (player.world.worldInfo.worldName == clientWorld) {
+            BackLocationProvider.commit(player)
             player.teleport(targetWorld, xPos, yPos, zPos, yaw, pitch)
             sendMessage(player.commandSource, "success", warp.name)
         } else {

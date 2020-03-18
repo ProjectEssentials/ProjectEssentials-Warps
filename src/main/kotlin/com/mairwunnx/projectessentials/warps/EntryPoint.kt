@@ -1,6 +1,8 @@
 package com.mairwunnx.projectessentials.warps
 
 import com.mairwunnx.projectessentials.core.EssBase
+import com.mairwunnx.projectessentials.core.configuration.localization.LocalizationConfigurationUtils
+import com.mairwunnx.projectessentials.core.localization.processLocalizations
 import com.mairwunnx.projectessentials.permissions.permissions.PermissionsAPI
 import com.mairwunnx.projectessentials.warps.commands.DelWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.SetWarpCommand
@@ -28,6 +30,20 @@ class EntryPoint : EssBase() {
         validateForgeVersion()
         MinecraftForge.EVENT_BUS.register(this)
         WarpModelUtils.loadData()
+        loadLocalization()
+    }
+
+    private fun loadLocalization() {
+        if (LocalizationConfigurationUtils.getConfig().enabled) {
+            processLocalizations(
+                EntryPoint::class.java, listOf(
+                    "/assets/projectessentialswarps/lang/en_us.json",
+                    "/assets/projectessentialswarps/lang/ru_ru.json",
+                    "/assets/projectessentialswarps/lang/pt_br.json",
+                    "/assets/projectessentialswarps/lang/de_de.json"
+                )
+            )
+        }
     }
 
     @SubscribeEvent

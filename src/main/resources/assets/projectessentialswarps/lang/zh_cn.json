@@ -1,0 +1,11 @@
+{
+  "project_essentials_warps.warp.exist": "§c传送点 §7%s §c已经存在。",
+  "project_essentials_warps.warp.set.restricted": "§c你 §7没有权限 §c设置新的传送点。",
+  "project_essentials_warps.warp.set.success": "§6新传送点 §7%s §6已保存。",
+  "project_essentials_warps.warp.not_found": "§c传送点 §7%s §c并 §7不存在§c。",
+  "project_essentials_warps.warp.restricted": "§c你 §7没有权限 §c进行传送。",
+  "project_essentials_warps.warp.success": "§6传送到传送点 §7%s§6。",
+  "project_essentials_warps.warp.remove_not_access": "§c你 §7不能删除这个传送点§c, 它属于其他的玩家。",
+  "project_essentials_warps.warp.remove.success": "§6传送点 §7%s§6 已移除。",
+  "project_essentials_warps.warp.remove.restricted": "§c你 §7没有权限 §c移除传送点。"
+}

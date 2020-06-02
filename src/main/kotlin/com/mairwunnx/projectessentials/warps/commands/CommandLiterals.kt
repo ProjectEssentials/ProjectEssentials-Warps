@@ -20,3 +20,10 @@ val warpLiteral: LiteralArgumentBuilder<CommandSource> =
             )
         }.executes { WarpCommand.process(it) }
     )
+
+inline val setWarpLiteral: LiteralArgumentBuilder<CommandSource>
+    get() = LiteralArgumentBuilder.literal<CommandSource>("set-warp").then(
+        Commands.argument(
+            "warp", StringArgumentType.string()
+        ).executes { SetWarpCommand.process(it) }
+    ).executes { SetWarpCommand.process(it) }

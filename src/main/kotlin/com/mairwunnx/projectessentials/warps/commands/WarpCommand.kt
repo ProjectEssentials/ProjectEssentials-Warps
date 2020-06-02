@@ -16,7 +16,7 @@ object WarpCommand : CommandBase(warpLiteral, false) {
     override val name = "warp"
     override fun process(context: CommandContext<CommandSource>) = 0.also {
         fun out(status: String, vararg args: String) = MessagingAPI.sendMessage(
-            context.getPlayer()!!, "${MESSAGE_MODULE_PREFIX}warps.$status", args = *args
+            context.getPlayer()!!, "${MESSAGE_MODULE_PREFIX}warps.warp.$status", args = *args
         )
 
         validateAndExecute(context, "ess.warp.teleport", 0) { isServer ->

@@ -11,8 +11,8 @@ issueTrackerURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps/is
     credits="hujle, JetBrains, all forge developers, and other contributors"
     authors="MairwunNx (Pavel Erokhin)"
     description='''
-    Project Essentials Warps - additional module for Essentials;
-    Just add ability to set and teleport to warps.
+    Share the ender portal with players! Adds the ability to control public
+    points in different worlds.
     '''
 
 [[dependencies.projectessentialswarps]]

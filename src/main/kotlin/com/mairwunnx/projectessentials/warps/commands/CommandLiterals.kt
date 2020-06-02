@@ -1,7 +1,6 @@
 package com.mairwunnx.projectessentials.warps.commands
 
-import com.mairwunnx.projectessentials.core.api.v1.configuration.ConfigurationAPI
-import com.mairwunnx.projectessentials.warps.configurations.WarpsConfiguration
+import com.mairwunnx.projectessentials.warps.warpsConfiguration
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import net.minecraft.command.CommandSource
@@ -14,9 +13,7 @@ val warpLiteral: LiteralArgumentBuilder<CommandSource> =
             "warp", StringArgumentType.string()
         ).suggests { _, builder ->
             ISuggestionProvider.suggest(
-                ConfigurationAPI.getConfigurationByName<WarpsConfiguration>(
-                    "warps"
-                ).take().warps.asSequence().map { it.name }.toList(), builder
+                warpsConfiguration.warps.asSequence().map { it.name }.toList(), builder
             )
         }.executes { WarpCommand.process(it) }
     )
@@ -27,3 +24,14 @@ inline val setWarpLiteral: LiteralArgumentBuilder<CommandSource>
             "warp", StringArgumentType.string()
         ).executes { SetWarpCommand.process(it) }
     ).executes { SetWarpCommand.process(it) }
+
+inline val delWarpLiteral: LiteralArgumentBuilder<CommandSource>
+    get() = LiteralArgumentBuilder.literal<CommandSource>("del-warp").then(
+        Commands.argument(
+            "warp", StringArgumentType.string()
+        ).suggests { _, builder ->
+            ISuggestionProvider.suggest(
+                warpsConfiguration.warps.asSequence().map { it.name }.toList(), builder
+            )
+        }.executes { DelWarpCommand.process(it) }
+    ).executes { DelWarpCommand.process(it) }

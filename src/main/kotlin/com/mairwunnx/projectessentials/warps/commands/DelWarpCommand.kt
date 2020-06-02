@@ -35,12 +35,12 @@ object DelWarpCommand : CommandBase(delWarpLiteral, false) {
                     if (warp.owner != context.getPlayer()!!.name.string) {
                         if (hasPermission(context.getPlayer()!!, "ess.warp.remove.other", 4)) {
                             warpsConfiguration.warps.removeIf { it.name == name }.also {
-                                out("success").also { super.process(context) }
+                                out("success", name).also { super.process(context) }
                             }
                         } else out("no_access", name)
                     } else {
                         warpsConfiguration.warps.removeIf { it.name == name }.also {
-                            out("success").also { super.process(context) }
+                            out("success", name).also { super.process(context) }
                         }
                     }
                 } ?: run { out("not_exist", name) }

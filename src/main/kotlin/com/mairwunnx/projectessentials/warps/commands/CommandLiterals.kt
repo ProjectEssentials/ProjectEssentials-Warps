@@ -18,5 +18,5 @@ val warpLiteral: LiteralArgumentBuilder<CommandSource> =
                     "warps"
                 ).take().warps.asSequence().map { it.name }.toList(), builder
             )
-        }
+        }.executes { WarpCommand.process(it) }
     )

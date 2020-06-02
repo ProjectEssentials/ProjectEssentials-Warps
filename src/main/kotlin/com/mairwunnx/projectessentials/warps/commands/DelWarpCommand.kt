@@ -1,80 +1,50 @@
 package com.mairwunnx.projectessentials.warps.commands
 
-import com.mairwunnx.projectessentials.cooldown.essentials.CommandsAliases
-import com.mairwunnx.projectessentials.core.extensions.isPlayerSender
-import com.mairwunnx.projectessentials.core.helpers.throwOnlyPlayerCan
-import com.mairwunnx.projectessentials.core.helpers.throwPermissionLevel
-import com.mairwunnx.projectessentials.warps.EntryPoint
-import com.mairwunnx.projectessentials.warps.EntryPoint.Companion.hasPermission
-import com.mairwunnx.projectessentials.warps.models.WarpModelUtils
-import com.mairwunnx.projectessentials.warps.sendMessage
-import com.mojang.brigadier.CommandDispatcher
-import com.mojang.brigadier.arguments.StringArgumentType
-import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
+import com.mairwunnx.projectessentials.core.api.v1.MESSAGE_MODULE_PREFIX
+import com.mairwunnx.projectessentials.core.api.v1.commands.CommandAPI
+import com.mairwunnx.projectessentials.core.api.v1.commands.CommandBase
+import com.mairwunnx.projectessentials.core.api.v1.extensions.getPlayer
+import com.mairwunnx.projectessentials.core.api.v1.messaging.MessagingAPI
+import com.mairwunnx.projectessentials.core.api.v1.messaging.ServerMessagingAPI
+import com.mairwunnx.projectessentials.core.api.v1.permissions.hasPermission
+import com.mairwunnx.projectessentials.warps.helpers.validateAndExecute
+import com.mairwunnx.projectessentials.warps.warpsConfiguration
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandSource
-import net.minecraft.command.Commands
-import org.apache.logging.log4j.LogManager
 
-object DelWarpCommand {
-    private val aliases = listOf(
-        "delwarp", "edelwarp", "removewarp", "eremovewarp"
-    )
-    private val logger = LogManager.getLogger()
+object DelWarpCommand : CommandBase(delWarpLiteral, false) {
+    override val name = "del-warp"
+    override fun process(context: CommandContext<CommandSource>) = 0.also {
+        val name = CommandAPI.getString(context, "warp")
+        fun out(status: String, vararg args: String) = MessagingAPI.sendMessage(
+            context.getPlayer()!!, "${MESSAGE_MODULE_PREFIX}warps.delwarp.$status", args = *args
+        )
 
-    fun register(dispatcher: CommandDispatcher<CommandSource>) {
-        logger.info("Register \"/delwarp\" command")
-        applyCommandAliases()
-
-        aliases.forEach { command ->
-            dispatcher.register(
-                literal<CommandSource>(command).then(
-                    Commands.argument(
-                        "warp name", StringArgumentType.string()
-                    ).executes {
-                        return@executes execute(it)
-                    }
-                )
-            )
-        }
-    }
-
-    private fun applyCommandAliases() {
-        if (EntryPoint.cooldownsInstalled) {
-            CommandsAliases.aliases["delwarp"] = aliases.toMutableList()
-        }
-    }
-
-    private fun execute(c: CommandContext<CommandSource>): Int {
-        if (c.isPlayerSender()) {
-            val player = c.source.asPlayer()
-            if (hasPermission(player, "ess.warp.remove")) {
-                val warpName = StringArgumentType.getString(c, "warp name")
-                WarpModelUtils.warpModel.warps.forEach {
-                    if (it.name == warpName && it.owner != player.name.string) {
-                        sendMessage(c.source, "remove_not_access")
-                        return 0
-                    }
-                }
-                val warp = WarpModelUtils.warpModel.warps.first {
-                    it.name == warpName
-                }
-                WarpModelUtils.warpModel.warps.remove(warp).let { result ->
-                    if (result) {
-                        sendMessage(c.source, "remove.success", warpName)
-                        logger.info("Executed command \"/delwarp\" from ${player.name.string}")
-                        return 0
-                    } else {
-                        sendMessage(c.source, "not_found", warpName)
-                    }
+        validateAndExecute(context, "ess.warp.remove", 0) { isServer ->
+            if (isServer) {
+                val result = warpsConfiguration.warps.removeIf { it.name == name }
+                if (result) {
+                    ServerMessagingAPI.response { "You've removed the warp $name." }
+                } else {
+                    ServerMessagingAPI.response { "Warp with name $name not exist." }
                 }
             } else {
-                sendMessage(c.source, "remove.restricted")
-                throwPermissionLevel(player.name.string, "delwarp")
+                warpsConfiguration.warps.find {
+                    it.name == name
+                }?.let { warp ->
+                    if (warp.owner != context.getPlayer()!!.name.string) {
+                        if (hasPermission(context.getPlayer()!!, "ess.warp.remove.other", 4)) {
+                            warpsConfiguration.warps.removeIf { it.name == name }.also {
+                                out("success").also { super.process(context) }
+                            }
+                        } else out("no_access", name)
+                    } else {
+                        warpsConfiguration.warps.removeIf { it.name == name }.also {
+                            out("success").also { super.process(context) }
+                        }
+                    }
+                } ?: run { out("not_exist", name) }
             }
-        } else {
-            throwOnlyPlayerCan("delwarp")
         }
-        return 0
     }
 }

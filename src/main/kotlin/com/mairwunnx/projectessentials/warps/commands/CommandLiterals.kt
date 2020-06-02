@@ -23,7 +23,7 @@ inline val setWarpLiteral: LiteralArgumentBuilder<CommandSource>
         Commands.argument(
             "warp", StringArgumentType.string()
         ).executes { SetWarpCommand.process(it) }
-    ).executes { SetWarpCommand.process(it) }
+    )
 
 inline val delWarpLiteral: LiteralArgumentBuilder<CommandSource>
     get() = LiteralArgumentBuilder.literal<CommandSource>("del-warp").then(
@@ -34,4 +34,4 @@ inline val delWarpLiteral: LiteralArgumentBuilder<CommandSource>
                 warpsConfiguration.warps.asSequence().map { it.name }.toList(), builder
             )
         }.executes { DelWarpCommand.process(it) }
-    ).executes { DelWarpCommand.process(it) }
+    )

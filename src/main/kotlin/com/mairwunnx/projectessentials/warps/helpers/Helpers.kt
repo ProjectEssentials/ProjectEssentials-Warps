@@ -17,7 +17,7 @@ inline fun validateAndExecute(
         action(false)
     } else {
         MessagingAPI.sendMessage(
-            context.getPlayer()!!, "${MESSAGE_MODULE_PREFIX}home.restricted"
+            context.getPlayer()!!, "${MESSAGE_MODULE_PREFIX}warps.restricted"
         )
     }
 } ?: run { action(true) }

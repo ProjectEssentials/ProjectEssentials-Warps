@@ -28,9 +28,9 @@ object WarpCommand : CommandBase(warpLiteral, false) {
                     it.name == warp
                 }?.let {
                     teleportToWarp(context.getPlayer()!!, it).also {
-                        out("success").also { super.process(context) }
+                        out("success", warp).also { super.process(context) }
                     }
-                } ?: run { out("not_found") }
+                } ?: run { out("not_found", warp) }
             }
         }
     }

@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.mairwunnx.projectessentials.warps
 
 import com.mairwunnx.projectessentials.core.api.v1.IMCLocalizationMessage
@@ -9,6 +11,7 @@ import com.mairwunnx.projectessentials.core.api.v1.module.IModule
 import com.mairwunnx.projectessentials.warps.commands.DelWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.SetWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.WarpCommand
+import com.mairwunnx.projectessentials.warps.configurations.WarpsConfiguration
 import com.mairwunnx.projectessentials.warps.configurations.WarpsSettingsConfiguration
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.InterModComms
@@ -55,7 +58,7 @@ class ModuleObject : IModule {
                 SetWarpCommand::class.java,
                 WarpCommand::class.java,
                 DelWarpCommand::class.java,
-                WarpConfiguration::class.java,
+                WarpsConfiguration::class.java,
                 WarpsSettingsConfiguration::class.java,
                 ModuleObject::class.java
             )

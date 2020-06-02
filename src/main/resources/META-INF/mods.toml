@@ -8,7 +8,7 @@ issueTrackerURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps/is
     displayName="Project Essentials Warps"
     updateJSONURL="https://raw.githubusercontent.com/ProjectEssentials/ProjectEssentials-Warps/MC-1.14.4/updatev2.json"
     displayURL="https://github.com/ProjectEssentials/ProjectEssentials-Warps"
-    credits="Thanks JetBrains for Intellij IDEA license!"
+    credits="hujle, JetBrains, all forge developers, and other contributors"
     authors="MairwunNx (Pavel Erokhin)"
     description='''
     Project Essentials Warps - additional module for Essentials;

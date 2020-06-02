@@ -35,7 +35,7 @@ object SetWarpCommand : CommandBase(setWarpLiteral, false) {
                                 currentDimensionId, position.x, position.y, position.z,
                                 rotationYaw, rotationPitch
                             )
-                        ).also { out("success").also { super.process(context) } }
+                        ).also { out("success", name).also { super.process(context) } }
                     }
                 }
             }

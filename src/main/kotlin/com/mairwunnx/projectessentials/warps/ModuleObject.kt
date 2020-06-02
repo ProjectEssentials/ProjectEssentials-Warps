@@ -9,6 +9,7 @@ import com.mairwunnx.projectessentials.core.api.v1.module.IModule
 import com.mairwunnx.projectessentials.warps.commands.DelWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.SetWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.WarpCommand
+import com.mairwunnx.projectessentials.warps.configurations.WarpsSettingsConfiguration
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.InterModComms
 import net.minecraftforge.fml.common.Mod
@@ -55,7 +56,8 @@ class ModuleObject : IModule {
                 WarpCommand::class.java,
                 DelWarpCommand::class.java,
                 WarpConfiguration::class.java,
-                WarpSettingsConfiguration::class.java
+                WarpsSettingsConfiguration::class.java,
+                ModuleObject::class.java
             )
         }
     }

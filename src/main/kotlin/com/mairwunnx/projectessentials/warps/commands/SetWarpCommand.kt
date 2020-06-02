@@ -7,11 +7,14 @@ import com.mairwunnx.projectessentials.core.api.v1.extensions.currentDimensionId
 import com.mairwunnx.projectessentials.core.api.v1.extensions.getPlayer
 import com.mairwunnx.projectessentials.core.api.v1.messaging.MessagingAPI
 import com.mairwunnx.projectessentials.core.api.v1.messaging.ServerMessagingAPI
+import com.mairwunnx.projectessentials.core.api.v1.permissions.hasPermission
 import com.mairwunnx.projectessentials.warps.configurations.WarpsConfigurationModel
 import com.mairwunnx.projectessentials.warps.helpers.validateAndExecute
 import com.mairwunnx.projectessentials.warps.warpsConfiguration
+import com.mairwunnx.projectessentials.warps.warpsSettingsConfiguration
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandSource
+import net.minecraft.entity.player.ServerPlayerEntity
 
 object SetWarpCommand : CommandBase(setWarpLiteral, false) {
     override val name = "set-warp"
@@ -29,16 +32,30 @@ object SetWarpCommand : CommandBase(setWarpLiteral, false) {
                     it.name == name
                 }?.let { out("exist", name) } ?: run {
                     with(context.getPlayer()!!) {
-                        warpsConfiguration.warps.add(
-                            WarpsConfigurationModel.Warp(
-                                name, this.name.string,
-                                currentDimensionId, position.x, position.y, position.z,
-                                rotationYaw, rotationPitch
-                            )
-                        ).also { out("success", name).also { super.process(context) } }
+                        if (!hasLimitations(this)) {
+                            warpsConfiguration.warps.add(
+                                WarpsConfigurationModel.Warp(
+                                    name, this.name.string,
+                                    currentDimensionId, position.x, position.y, position.z,
+                                    rotationYaw, rotationPitch
+                                )
+                            ).also { out("success", name).also { super.process(context) } }
+                        } else out("limit")
                     }
                 }
             }
         }
+    }
+
+    private fun hasLimitations(player: ServerPlayerEntity): Boolean {
+        var allowed = 1
+        warpsSettingsConfiguration.warpsLimitations.also { map ->
+            warpsSettingsConfiguration.warpsLimitations.keys.asSequence().forEach {
+                if (hasPermission(player, "ess.warp.limit.$it", 0)) {
+                    if (allowed < map.getValue(it)) allowed = map.getValue(it)
+                }
+            }
+        }
+        return warpsConfiguration.warps.filter { it.owner == player.name.string }.count() < allowed
     }
 }

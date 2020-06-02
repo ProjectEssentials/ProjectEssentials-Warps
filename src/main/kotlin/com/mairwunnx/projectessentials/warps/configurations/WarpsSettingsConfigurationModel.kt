@@ -8,5 +8,5 @@ data class WarpsSettingsConfigurationModel(
     var showEffectOnTeleport: Boolean = true,
     var addResistanceEffect: Boolean = true,
     var resistanceEffectDuration: Int = 200,
-    var warpsLimitations: Map<String, String> = mapOf("default" to "6")
+    var warpsLimitations: Map<String, Int> = mapOf("default" to 6)
 )

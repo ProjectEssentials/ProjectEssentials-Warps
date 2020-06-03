@@ -49,7 +49,7 @@ object SetWarpCommand : CommandBase(setWarpLiteral, false) {
 
     private fun hasLimitations(player: ServerPlayerEntity): Boolean {
         if (hasPermission(player, "ess.warp.limit.except", 4)) return false
-        var allowed = 1
+        var allowed = Int.MAX_VALUE
         warpsSettingsConfiguration.warpsLimitations.also { map ->
             warpsSettingsConfiguration.warpsLimitations.keys.asSequence().forEach {
                 if (hasPermission(player, "ess.warp.limit.$it", 0)) {
@@ -57,6 +57,8 @@ object SetWarpCommand : CommandBase(setWarpLiteral, false) {
                 }
             }
         }
-        return warpsConfiguration.warps.filter { it.owner == player.name.string }.count() >= allowed
+        return warpsConfiguration.warps.asSequence().filter {
+            it.owner == player.name.string
+        }.count() >= allowed
     }
 }

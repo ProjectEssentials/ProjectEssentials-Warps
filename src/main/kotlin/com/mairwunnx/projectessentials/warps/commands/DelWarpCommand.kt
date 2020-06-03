@@ -43,7 +43,7 @@ object DelWarpCommand : CommandBase(delWarpLiteral, false) {
                             out("success", name).also { super.process(context) }
                         }
                     }
-                } ?: run { out("not_exist", name) }
+                } ?: run { out("not_found", name) }
             }
         }
     }

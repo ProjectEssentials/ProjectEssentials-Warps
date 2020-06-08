@@ -11,8 +11,8 @@ import net.minecraft.command.CommandSource
 import net.minecraft.command.Commands
 import net.minecraft.command.ISuggestionProvider
 
-val warpLiteral: LiteralArgumentBuilder<CommandSource> =
-    LiteralArgumentBuilder.literal<CommandSource>("warp").then(
+inline val warpLiteral: LiteralArgumentBuilder<CommandSource>
+    get() = LiteralArgumentBuilder.literal<CommandSource>("warp").then(
         Commands.argument(
             "warp", StringArgumentType.string()
         ).suggests { _, builder ->

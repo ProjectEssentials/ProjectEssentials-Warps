@@ -20,9 +20,7 @@ object WarpCommand : CommandBase(warpLiteral, false) {
         )
 
         validateAndExecute(context, "ess.warp.teleport", 0) { isServer ->
-            if (isServer) {
-                ServerMessagingAPI.throwOnlyPlayerCan()
-            } else {
+            if (isServer) ServerMessagingAPI.throwOnlyPlayerCan() else {
                 val warp = CommandAPI.getString(context, "warp")
                 warpsConfiguration.warps.asSequence().find {
                     it.name == warp

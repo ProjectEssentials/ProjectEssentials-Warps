@@ -2,7 +2,6 @@
 
 package com.mairwunnx.projectessentials.warps
 
-import com.mairwunnx.projectessentials.core.api.v1.localization.Localization
 import com.mairwunnx.projectessentials.core.api.v1.localization.LocalizationAPI
 import com.mairwunnx.projectessentials.core.api.v1.module.IModule
 import com.mairwunnx.projectessentials.core.api.v1.providers.ProviderAPI
@@ -39,26 +38,14 @@ class ModuleObject : IModule {
     }
 
     private fun initLocalization() {
-        LocalizationAPI.apply(
-            Localization(
-                mutableListOf(
-                    "/assets/projectessentialswarps/lang/en_us.json",
-                    "/assets/projectessentialswarps/lang/ru_ru.json",
-                    "/assets/projectessentialswarps/lang/de_de.json",
-                    "/assets/projectessentialswarps/lang/zh_cn.json",
-                    "/assets/projectessentialswarps/lang/pt_br.json"
-                ), "core", this.javaClass
+        LocalizationAPI.apply(this.javaClass) {
+            mutableListOf(
+                "/assets/projectessentialswarps/lang/en_us.json",
+                "/assets/projectessentialswarps/lang/ru_ru.json",
+                "/assets/projectessentialswarps/lang/de_de.json",
+                "/assets/projectessentialswarps/lang/zh_cn.json",
+                "/assets/projectessentialswarps/lang/pt_br.json"
             )
-        )
-
-//        LocalizationAPI.apply(this.javaClass) {
-//            mutableListOf(
-//                "/assets/projectessentialswarps/lang/en_us.json",
-//                "/assets/projectessentialswarps/lang/ru_ru.json",
-//                "/assets/projectessentialswarps/lang/de_de.json",
-//                "/assets/projectessentialswarps/lang/zh_cn.json",
-//                "/assets/projectessentialswarps/lang/pt_br.json"
-//            )
-//        }
+        }
     }
 }

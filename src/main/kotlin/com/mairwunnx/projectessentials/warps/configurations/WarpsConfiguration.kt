@@ -36,7 +36,7 @@ object WarpsConfiguration : IConfiguration<WarpsConfigurationModel> {
 
         logger.info("Saving configuration `${name}`")
         val raw = jsonInstance.stringify(
-            WarpsConfigurationModel.serializer(), configuration
+            WarpsConfigurationModel.serializer(), configurationData
         )
         try {
             File(path).writeText(raw)

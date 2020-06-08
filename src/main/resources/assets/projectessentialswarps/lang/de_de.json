@@ -1,11 +1,9 @@
 {
-  "project_essentials_warps.warp.exist": "§cWarp §7%s §cexistiert bereits.",
-  "project_essentials_warps.warp.set.restricted": "§cDu §7bist nicht berechtigt §cum Warps zu erstellen.",
-  "project_essentials_warps.warp.set.success": "§6Neuer Warp §7%s §6wurde erstellt.",
-  "project_essentials_warps.warp.not_found": "§cWarp §7%s §cexistiert §7nicht§c.",
-  "project_essentials_warps.warp.restricted": "§cDu §7bist nicht berechtigt §cum dich zu einem Warp-Punkt zu teleportieren.",
   "project_essentials_warps.warp.success": "§6Zu Warp §7%s§6 teleportiert.",
-  "project_essentials_warps.warp.remove_not_access": "§cDu §7kannst diesen Warp nicht löschen§c, er gehört einem anderen Spieler.",
-  "project_essentials_warps.warp.remove.success": "§6Warp §7%s§6 wurde gelöscht.",
-  "project_essentials_warps.warp.remove.restricted": "§cDu §7bist nicht berechtigt §cum Warp-Punkte zu löschen."
+  "project_essentials_warps.warp.not_found": "§cWarp §7%s §cexistiert §7nicht§c.",
+  "project_essentials_warps.setwarp.exist": "§cWarp §7%s §cexistiert bereits.",
+  "project_essentials_warps.setwarp.success": "§6Neuer Warp §7%s §6wurde erstellt.",
+  "project_essentials_warps.delwarp.success": "§6Warp §7%s§6 wurde gelöscht.",
+  "project_essentials_warps.delwarp.no_access": "§cDu §7kannst diesen Warp nicht löschen§c, er gehört einem anderen Spieler.",
+  "project_essentials_warps.delwarp.not_found": "§cWarp §7%s §cexistiert §7nicht§c."
 }

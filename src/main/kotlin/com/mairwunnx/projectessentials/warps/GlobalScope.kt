@@ -38,7 +38,7 @@ fun teleportToWarp(player: ServerPlayerEntity, warp: WarpsConfigurationModel.War
         DistExecutor.runWhenOn(Dist.CLIENT) {
             Runnable {
                 for (i in 0..200) {
-                    Minecraft.getInstance().world.addParticle(
+                    Minecraft.getInstance().world?.addParticle(
                         ParticleTypes.PORTAL,
                         player.positionVec.x + (random.nextDouble() - 0.5) * player.width.toDouble(),
                         player.positionVec.y + random.nextDouble() * player.height.toDouble() - 0.25,

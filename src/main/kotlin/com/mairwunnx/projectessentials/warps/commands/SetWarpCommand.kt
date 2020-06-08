@@ -24,9 +24,7 @@ object SetWarpCommand : CommandBase(setWarpLiteral, false) {
         )
 
         validateAndExecute(context, "ess.warp.set", 0) { isServer ->
-            if (isServer) {
-                ServerMessagingAPI.throwOnlyPlayerCan()
-            } else {
+            if (isServer) ServerMessagingAPI.throwOnlyPlayerCan() else {
                 val name = CommandAPI.getString(context, "warp")
                 warpsConfiguration.warps.asSequence().find {
                     it.name == name

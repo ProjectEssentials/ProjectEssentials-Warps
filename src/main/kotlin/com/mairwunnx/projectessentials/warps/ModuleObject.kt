@@ -2,19 +2,16 @@
 
 package com.mairwunnx.projectessentials.warps
 
-import com.mairwunnx.projectessentials.core.api.v1.IMCLocalizationMessage
-import com.mairwunnx.projectessentials.core.api.v1.IMCProvidersMessage
-import com.mairwunnx.projectessentials.core.api.v1.events.ModuleEventAPI
-import com.mairwunnx.projectessentials.core.api.v1.events.forge.ForgeEventType
-import com.mairwunnx.projectessentials.core.api.v1.events.forge.InterModEnqueueEventData
+import com.mairwunnx.projectessentials.core.api.v1.localization.Localization
+import com.mairwunnx.projectessentials.core.api.v1.localization.LocalizationAPI
 import com.mairwunnx.projectessentials.core.api.v1.module.IModule
+import com.mairwunnx.projectessentials.core.api.v1.providers.ProviderAPI
 import com.mairwunnx.projectessentials.warps.commands.DelWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.SetWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.WarpCommand
 import com.mairwunnx.projectessentials.warps.configurations.WarpsConfiguration
 import com.mairwunnx.projectessentials.warps.configurations.WarpsSettingsConfiguration
 import net.minecraftforge.common.MinecraftForge
-import net.minecraftforge.fml.InterModComms
 import net.minecraftforge.fml.common.Mod
 
 @Mod("project_essentials_warps")
@@ -26,42 +23,42 @@ class ModuleObject : IModule {
 
     init {
         MinecraftForge.EVENT_BUS.register(this)
-        ModuleEventAPI.subscribeOn<InterModEnqueueEventData>(
-            ForgeEventType.EnqueueIMCEvent
-        ) {
-            sendLocalizationRequest()
-            sendProvidersRequest()
-        }
+        initProviders()
+        initLocalization()
     }
 
-    private fun sendLocalizationRequest() {
-        InterModComms.sendTo(
-            "project_essentials_core",
-            IMCLocalizationMessage
-        ) {
-            fun() = mutableListOf(
-                "/assets/projectessentialswarps/lang/en_us.json",
-                "/assets/projectessentialswarps/lang/ru_ru.json",
-                "/assets/projectessentialswarps/lang/de_de.json",
-                "/assets/projectessentialswarps/lang/zh_cn.json",
-                "/assets/projectessentialswarps/lang/pt_br.json"
-            )
-        }
+    private fun initProviders() {
+        listOf(
+            SetWarpCommand::class.java,
+            WarpCommand::class.java,
+            DelWarpCommand::class.java,
+            WarpsConfiguration::class.java,
+            WarpsSettingsConfiguration::class.java,
+            ModuleObject::class.java
+        ).forEach(ProviderAPI::addProvider)
     }
 
-    private fun sendProvidersRequest() {
-        InterModComms.sendTo(
-            "project_essentials_core",
-            IMCProvidersMessage
-        ) {
-            fun() = listOf(
-                SetWarpCommand::class.java,
-                WarpCommand::class.java,
-                DelWarpCommand::class.java,
-                WarpsConfiguration::class.java,
-                WarpsSettingsConfiguration::class.java,
-                ModuleObject::class.java
+    private fun initLocalization() {
+        LocalizationAPI.apply(
+            Localization(
+                mutableListOf(
+                    "/assets/projectessentialswarps/lang/en_us.json",
+                    "/assets/projectessentialswarps/lang/ru_ru.json",
+                    "/assets/projectessentialswarps/lang/de_de.json",
+                    "/assets/projectessentialswarps/lang/zh_cn.json",
+                    "/assets/projectessentialswarps/lang/pt_br.json"
+                ), "core", this.javaClass
             )
-        }
+        )
+
+//        LocalizationAPI.apply(this.javaClass) {
+//            mutableListOf(
+//                "/assets/projectessentialswarps/lang/en_us.json",
+//                "/assets/projectessentialswarps/lang/ru_ru.json",
+//                "/assets/projectessentialswarps/lang/de_de.json",
+//                "/assets/projectessentialswarps/lang/zh_cn.json",
+//                "/assets/projectessentialswarps/lang/pt_br.json"
+//            )
+//        }
     }
 }

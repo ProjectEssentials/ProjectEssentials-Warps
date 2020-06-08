@@ -5,6 +5,7 @@ package com.mairwunnx.projectessentials.warps
 import com.mairwunnx.projectessentials.core.api.v1.localization.LocalizationAPI
 import com.mairwunnx.projectessentials.core.api.v1.module.IModule
 import com.mairwunnx.projectessentials.core.api.v1.providers.ProviderAPI
+import com.mairwunnx.projectessentials.warps.commands.ConfigureWarpsCommand
 import com.mairwunnx.projectessentials.warps.commands.DelWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.SetWarpCommand
 import com.mairwunnx.projectessentials.warps.commands.WarpCommand
@@ -32,6 +33,7 @@ class ModuleObject : IModule {
             DelWarpCommand::class.java,
             WarpsConfiguration::class.java,
             WarpsSettingsConfiguration::class.java,
+            ConfigureWarpsCommand::class.java,
             ModuleObject::class.java
         ).forEach(ProviderAPI::addProvider)
     }

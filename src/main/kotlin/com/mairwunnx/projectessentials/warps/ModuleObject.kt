@@ -22,8 +22,7 @@ class ModuleObject : IModule {
 
     init {
         MinecraftForge.EVENT_BUS.register(this)
-        initProviders()
-        initLocalization()
+        initProviders().also { initLocalization() }
     }
 
     private fun initProviders() {

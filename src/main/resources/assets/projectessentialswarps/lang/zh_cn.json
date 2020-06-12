@@ -1,6 +1,8 @@
 {
+  "project_essentials_warps.restricted": "§c你 §7没有权限 §c使用此命令。",
   "project_essentials_warps.warp.success": "§6传送到传送点 §7%s§6。",
   "project_essentials_warps.warp.not_found": "§c传送点 §7%s §c并 §7不存在§c。",
+  "project_essentials_warps.setwarp.limit": "§c你已到达传送点数量上限。",
   "project_essentials_warps.setwarp.exist": "§c传送点 §7%s §c已经存在。",
   "project_essentials_warps.setwarp.success": "§6新传送点 §7%s §6已保存。",
   "project_essentials_warps.delwarp.success": "§6传送点 §7%s§6 已移除。",

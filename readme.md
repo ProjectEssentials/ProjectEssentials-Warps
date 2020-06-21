@@ -14,7 +14,7 @@ Share the ender portal with players! Adds the ability to control public points i
 
 ### Explore
 
-#### [Download mod](https://github.com/ProjectEssentials/ProjectEssentials-Warps/releases/download/2.0.1%2BMC-1.14.4/Project.Essentials.Warps-2.0.1+MC-1.14.4.jar) · [Documentation and Guides](https://projectessentials.github.io/manual) · [Troubleshooting](https://github.com/ProjectEssentials/ProjectEssentials-Warps/issues/new/choose) · [Telegram](https://t.me/minecraftforge) · [Discord](https://discord.gg/VU9XZAt) · [CurseForge](https://www.curseforge.com/minecraft/mc-mods/project-essentials-core) · [Change log](https://github.com/ProjectEssentials/ProjectEssentials-Warps/blob/master/changelog.md)
+#### [Download mod](https://github.com/ProjectEssentials/ProjectEssentials-Warps/releases/download/2.0.1%2BMC-1.14.4/Project.Essentials.Warps-2.0.1+MC-1.14.4.jar) · [Documentation and Guides](https://projectessentials.github.io/manual) · [Troubleshooting](https://github.com/ProjectEssentials/ProjectEssentials-Warps/issues/new/choose) · [Telegram](https://t.me/minecraftforge) · [Discord](https://discord.gg/VU9XZAt) · [CurseForge](https://www.curseforge.com/minecraft/mc-mods/project-essentials-warps) · [Change log](https://github.com/ProjectEssentials/ProjectEssentials-Warps/blob/master/changelog.md)
 
 [![](https://github.com/ProjectEssentials/ProjectEssentials-Assets/raw/ASSETS-20-Q2/assets/common/support.png)](https://gist.github.com/MairwunNx/fda95062618db6880ef8ee06e1bba54f)
 
